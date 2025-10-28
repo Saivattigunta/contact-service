@@ -58,14 +58,23 @@ The application will start on `http://localhost:8080` by default.
 java -jar target/contact.service-0.0.1-SNAPSHOT.jar
 ```
 
+## API Documentation
+
+### Swagger UI
+The application includes Swagger UI for interactive API documentation and testing:
+
+- **Swagger UI**: `http://localhost:8080/swagger-ui.html`
+- **OpenAPI JSON**: `http://localhost:8080/v3/api-docs`
+
 ## API Endpoints
 
 The service provides the following REST endpoints:
 
 ### Contact Form Submission
 - **POST** `/api/contact` - Submit a contact form
-- **GET** `/api/contact` - Retrieve contact submissions (if implemented)
-- **GET** `/api/contact/{id}` - Get specific contact submission (if implemented)
+- **GET** `/api/contact` - Retrieve all contact submissions
+- **GET** `/api/contact/{id}` - Get specific contact submission by ID
+- **GET** `/api/contact/health` - Health check endpoint
 
 ### Health Check
 - **GET** `/actuator/health` - Application health status
@@ -112,11 +121,28 @@ src/
 
 ## Testing
 
+### Unit Tests
 Run tests using Maven:
 
 ```bash
 ./mvnw test
 ```
+
+### API Testing with Swagger UI
+1. Start the application: `./mvnw spring-boot:run`
+2. Open Swagger UI: `http://localhost:8080/swagger-ui.html`
+3. Use the interactive interface to test all endpoints:
+   - Try the **POST /api/contact** endpoint with sample data:
+     ```json
+     {
+       "name": "John Doe",
+       "email": "john.doe@example.com",
+       "subject": "Test Inquiry",
+       "message": "This is a test message from Swagger UI"
+     }
+     ```
+   - Use **GET /api/contact** to retrieve all submissions
+   - Use **GET /api/contact/{id}** to get a specific submission
 
 ## Contributing
 
